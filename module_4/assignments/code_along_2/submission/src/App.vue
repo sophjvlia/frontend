@@ -4,7 +4,7 @@ export default {
     return {
       selectedNumber: 1,
       selectedOption: '',
-      searchOptions: ['planets', 'people'],
+      searchOptions: ['planets', 'people', 'films', 'starships', 'species'],
       data: {}
     }
   },
@@ -33,8 +33,17 @@ export default {
 
   <button @click="getData">Submit</button>
 
-  <div class="data" v-for="(obj, index, key) in data" :key="key">
-    <p>{{ index }}: {{ obj }}</p>
+  <div class="card">
+      <div v-for="(obj, index, key) in data" :key="key">
+        <div>
+          <div v-if="typeof obj === 'string'">
+            {{ index }}: {{ obj }}
+          </div>
+          <div v-else>
+            Data not available
+          </div>
+        </div>
+      </div>
   </div>
 </template>
 
@@ -42,12 +51,20 @@ export default {
 input, select {
   margin: 0 8px;
   width: 100px;
+  text-align: center;
 }
 
-div.data {
-  background: gainsboro;
-  margin: 15px;
-  padding: 10px;
+.card {
+  background: darkslategrey;
+  color: whitesmoke;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.2rem;
   border-radius: 20px;
+  width: 300px;
+  padding: 30px;
+  line-height: 25px;
+  position: absolute;
+  top: 15%;
+  left: 35%;
 }
 </style>
